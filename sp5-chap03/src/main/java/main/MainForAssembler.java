@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import assembler.Assembler;
 import chap03.ChangePasswordService;
 import chap03.MemberRegisterService;
@@ -12,12 +15,16 @@ import chap03.RegisterRequest;
 import chap03.DuplicateMemberException;
 import chap03.MemberNotFoundException;
 import chap03.WrongIdPasswordException;
+import config.AppCtx;
 
 public class MainForAssembler {
 	
-	private static Assembler assembler = new Assembler();
+	private static ApplicationContext ctx = null;
 
 	public static void main(String[] args) throws IOException {
+		
+		ctx = new AnnotationConfigApplicationContext(AppCtx.class);
+		
 		BufferedReader reader =
 			new BufferedReader(new InputStreamReader(System.in));
 		
@@ -45,7 +52,7 @@ public class MainForAssembler {
 			return;
 		}
 		
-		MemberRegisterService regSvc = assembler.getMemberRegisterService();
+		MemberRegisterService regSvc = ctx.getBean("memberRegSvc", MemberRegisterService.class);
 		RegisterRequest req = new RegisterRequest();
 		req.setEmail(arg[1]);
 		req.SetName(arg[2]);
@@ -70,7 +77,7 @@ public class MainForAssembler {
 			return;
 		}
 		
-		ChangePasswordService changPwdSvc = assembler.getChangePasswordService();
+		ChangePasswordService changPwdSvc = ctx.getBean("changePwdSvc", ChangePasswordService.class);
 		try {
 			changPwdSvc.changePassword(arg[1], arg[2], arg[3]);
 			System.out.println("Change password complete\n");
