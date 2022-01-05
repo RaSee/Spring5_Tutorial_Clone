@@ -9,6 +9,7 @@ import chap03.MemberListPrinter;
 import chap03.MemberManager;
 import chap03.MemberPrinter;
 import chap03.MemberRegisterService;
+import chap03.VersionPrinter;
 
 @Configuration
 public class AppCtx {
@@ -46,5 +47,14 @@ public class AppCtx {
 		infoPrinter.setMemberManager(memberManager());
 		infoPrinter.setPrinter(memberPrinter());
 		return infoPrinter;
+	}
+	
+	@Bean
+	public VersionPrinter versionPrinter() {
+		VersionPrinter versionPrinter = new VersionPrinter();
+		versionPrinter.setMajorVersion(1);
+		versionPrinter.setMinorVersion(0);
+		
+		return versionPrinter;
 	}
 }

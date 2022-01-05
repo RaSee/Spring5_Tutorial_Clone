@@ -3,6 +3,7 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.module.ModuleDescriptor.Version;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -12,7 +13,7 @@ import chap03.MemberListPrinter;
 import chap03.ChangePasswordService;
 import chap03.MemberRegisterService;
 import chap03.RegisterRequest;
-
+import chap03.VersionPrinter;
 import chap03.DuplicateMemberException;
 import chap03.MemberInfoPrinter;
 import chap03.MemberNotFoundException;
@@ -47,6 +48,9 @@ public class MainForAssembler {
 				continue;
 			}else if (command.startsWith("info")) {
 				processInfoCommand(command.split(" "));
+				continue;
+			}else if (command.startsWith("version")) {
+				processVersionCommand();
 				continue;
 			}
 			else {
@@ -109,6 +113,11 @@ public class MainForAssembler {
 		}
 		MemberInfoPrinter infoPrinter = ctx.getBean("infoPrinter",MemberInfoPrinter.class);
 		infoPrinter.printMemberInfo(arg[1]);
+	}
+	
+	private static void processVersionCommand() {
+		VersionPrinter versionPrinter = ctx.getBean("versionPrinter", VersionPrinter.class);
+		versionPrinter.print();
 	}
 	
 	private static void printHelp() {
