@@ -8,11 +8,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import assembler.Assembler;
+import chap03.MemberListPrinter;
 import chap03.ChangePasswordService;
 import chap03.MemberRegisterService;
 import chap03.RegisterRequest;
 
 import chap03.DuplicateMemberException;
+import chap03.MemberInfoPrinter;
 import chap03.MemberNotFoundException;
 import chap03.WrongIdPasswordException;
 import config.AppCtx;
@@ -40,7 +42,14 @@ public class MainForAssembler {
 			}else if(command.startsWith("change ")) {
 				processChangeCommand(command.split(" "));
 				continue;
-			}else {
+			}else if (command.startsWith("list")) {
+				processListCommand();
+				continue;
+			}else if (command.startsWith("info")) {
+				processInfoCommand(command.split(" "));
+				continue;
+			}
+			else {
 				printHelp();
 			}
 		}
@@ -86,6 +95,20 @@ public class MainForAssembler {
 		}catch (WrongIdPasswordException e) {
 			System.out.println("Email or password is not same\n");
 		}
+	}
+	
+	private static void processListCommand() {
+		MemberListPrinter listPrinter = ctx.getBean("listPrinter", MemberListPrinter.class);
+		listPrinter.printAll();
+	}
+	
+	private static void processInfoCommand(String[] arg) {
+		if (arg.length != 2) {
+			printHelp();
+			return;
+		}
+		MemberInfoPrinter infoPrinter = ctx.getBean("infoPrinter",MemberInfoPrinter.class);
+		infoPrinter.printMemberInfo(arg[1]);
 	}
 	
 	private static void printHelp() {
