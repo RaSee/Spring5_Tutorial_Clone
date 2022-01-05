@@ -1,7 +1,10 @@
 package config;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import chap03.ChangePasswordService;
 import chap03.MemberInfoPrinter;
@@ -9,52 +12,40 @@ import chap03.MemberListPrinter;
 import chap03.MemberManager;
 import chap03.MemberPrinter;
 import chap03.MemberRegisterService;
-import chap03.VersionPrinter;
 
 @Configuration
-public class AppCtx {
+@Import(BasicBean.class)
+public class ComplexBean {
 	
-	@Bean
-	public MemberManager memberManager() {
-		return new MemberManager();
-	}
+	@Autowired
+	private MemberManager memberManager;
+	@Autowired
+	private MemberPrinter memberPrinter;
+	
 	
 	@Bean
 	public MemberRegisterService memberRegSvc() {
-		return new MemberRegisterService(memberManager());
+		return new MemberRegisterService(memberManager);
 	}
 	
 	@Bean
 	public ChangePasswordService changePwdSvc() {
 		ChangePasswordService pwdSvc = new ChangePasswordService();
-		pwdSvc.setMemberManager(memberManager());
+		pwdSvc.setMemberManager(memberManager);
 		return pwdSvc;
 	}
 	
-	@Bean
-	public MemberPrinter memberPrinter() {
-		return new MemberPrinter();
-	}
 	
 	@Bean
 	public MemberListPrinter listPrinter() {
-		return new MemberListPrinter(memberManager(), memberPrinter());
+		return new MemberListPrinter(memberManager, memberPrinter);
 	}
 	
 	@Bean
 	public MemberInfoPrinter infoPrinter() {
 		MemberInfoPrinter infoPrinter = new MemberInfoPrinter();
-		infoPrinter.setMemberManager(memberManager());
-		infoPrinter.setPrinter(memberPrinter());
+		infoPrinter.setPrinter(memberPrinter);
 		return infoPrinter;
 	}
 	
-	@Bean
-	public VersionPrinter versionPrinter() {
-		VersionPrinter versionPrinter = new VersionPrinter();
-		versionPrinter.setMajorVersion(1);
-		versionPrinter.setMinorVersion(0);
-		
-		return versionPrinter;
-	}
 }

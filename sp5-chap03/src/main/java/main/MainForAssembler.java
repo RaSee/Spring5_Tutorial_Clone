@@ -18,7 +18,8 @@ import chap03.DuplicateMemberException;
 import chap03.MemberInfoPrinter;
 import chap03.MemberNotFoundException;
 import chap03.WrongIdPasswordException;
-import config.AppCtx;
+import config.ComplexBean;
+import config.BasicBean;
 
 public class MainForAssembler {
 	
@@ -26,7 +27,7 @@ public class MainForAssembler {
 
 	public static void main(String[] args) throws IOException {
 		
-		ctx = new AnnotationConfigApplicationContext(AppCtx.class);
+		ctx = new AnnotationConfigApplicationContext(BasicBean.class, ComplexBean.class);
 		
 		BufferedReader reader =
 			new BufferedReader(new InputStreamReader(System.in));
@@ -128,3 +129,20 @@ public class MainForAssembler {
 	
 	
 }
+
+/*
+ * WARNING: Exception encountered during context initialization 
+ * - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: 
+ * Error creating bean with name 'complexBean': Unsatisfied dependency expressed through field 'memberManager'; 
+ * nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: 
+ * No qualifying bean of type 'chap03.MemberManager' 
+ * available: expected at least 1 bean which qualifies as autowire candidate.
+ * Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Exception in thread "main" org.springframework.beans.factory.UnsatisfiedDependencyException: 
+Error creating bean with name 'complexBean': Unsatisfied dependency expressed through field 'memberManager'; 
+nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: 
+No qualifying bean of type 'chap03.MemberManager' available: expected at least 1 bean which qualifies as autowire candidate. 
+Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+
+ */
+ 
