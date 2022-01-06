@@ -1,5 +1,6 @@
 package config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,7 +17,13 @@ public class BasicBean {
 	}
 	
 	@Bean
+	@Qualifier("printer")
 	public MemberPrinter memberPrinter() {
+		return new MemberPrinter();
+	}
+	
+	@Bean
+	public MemberPrinter dummyMemberPrinter() {
 		return new MemberPrinter();
 	}
 	
