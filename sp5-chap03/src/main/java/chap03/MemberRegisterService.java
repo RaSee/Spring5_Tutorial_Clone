@@ -2,9 +2,15 @@ package chap03;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class MemberRegisterService {
 
+	@Autowired
 	private MemberManager memberManager;
+	
+	public MemberRegisterService() {
+	}
 	
 	public MemberRegisterService(MemberManager memberManager) {
 		this.memberManager = memberManager;

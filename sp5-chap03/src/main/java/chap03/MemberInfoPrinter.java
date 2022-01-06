@@ -23,6 +23,7 @@ public class MemberInfoPrinter {
 		this.memberManager = memberManager;
 	}
 	
+	@Autowired
 	public void setPrinter(MemberPrinter printer) {
 		this.printer = printer;
 	}
