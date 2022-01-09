@@ -66,7 +66,7 @@ public class MainForAssembler {
 			return;
 		}
 		
-		MemberRegisterService regSvc = ctx.getBean("memberRegSvc", MemberRegisterService.class);
+		MemberRegisterService regSvc = ctx.getBean(MemberRegisterService.class);
 		RegisterRequest req = new RegisterRequest();
 		req.setEmail(arg[1]);
 		req.SetName(arg[2]);
@@ -91,7 +91,7 @@ public class MainForAssembler {
 			return;
 		}
 		
-		ChangePasswordService changPwdSvc = ctx.getBean("changePwdSvc", ChangePasswordService.class);
+		ChangePasswordService changPwdSvc = ctx.getBean(ChangePasswordService.class);
 		try {
 			changPwdSvc.changePassword(arg[1], arg[2], arg[3]);
 			System.out.println("Change password complete\n");

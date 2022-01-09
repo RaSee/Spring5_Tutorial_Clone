@@ -2,6 +2,7 @@ package config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import chap03.MemberManager;
@@ -9,6 +10,7 @@ import chap03.MemberPrinter;
 import chap03.VersionPrinter;
 
 @Configuration
+@ComponentScan(basePackages = {"spring"})
 public class BasicBean {
 	
 	@Bean

@@ -37,5 +37,4 @@ public class ComplexBean {
 		MemberInfoPrinter infoPrinter = new MemberInfoPrinter();
 		return infoPrinter;
 	}
-	
 }
