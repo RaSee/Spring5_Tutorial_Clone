@@ -11,7 +11,7 @@ public class Assembler {
 	private ChangePasswordService pwdSvc;
 	
 	public Assembler() {
-		memberManager = new MemberManager();
+		memberManager = new MemberManager(null);
 		regSvc = new MemberRegisterService(memberManager);
 		pwdSvc = new ChangePasswordService();
 		pwdSvc.setMemberManager(memberManager);

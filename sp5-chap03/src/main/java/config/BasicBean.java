@@ -13,10 +13,6 @@ import chap03.VersionPrinter;
 @ComponentScan(basePackages = {"spring"})
 public class BasicBean {
 	
-	@Bean
-	public MemberManager memberManager() {
-		return new MemberManager();
-	}
 	
 	@Bean
 	@Qualifier("printer")
