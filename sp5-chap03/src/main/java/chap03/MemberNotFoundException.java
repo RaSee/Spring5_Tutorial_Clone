@@ -1,5 +1,5 @@
 package chap03;
 
-public class MemberNotFoundException extends Exception {
+public class MemberNotFoundException extends RuntimeException {
 
 }
