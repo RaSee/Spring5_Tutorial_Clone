@@ -3,7 +3,6 @@ package chap03;
 
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.PreparedStatement;
@@ -11,20 +10,17 @@ import java.util.List;
 
 
 import javax.sql.DataSource;
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 
-public class MemberManager {
+public class MemberDao {
 
 	private JdbcTemplate jdbcTemplate;
 	
-	public MemberManager(DataSource dataSource) {
+	public MemberDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	

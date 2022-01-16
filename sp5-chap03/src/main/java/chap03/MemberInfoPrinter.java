@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 public class MemberInfoPrinter {
 
 	@Autowired
-	private MemberManager memberManager;
+	private MemberDao MemberDao;
 	private MemberPrinter printer;
 	
 	public void printMemberInfo(String email) {
-		Member member = memberManager.SelectByEmail(email);
+		Member member = MemberDao.SelectByEmail(email);
 		if(member == null) {
 			System.out.println("데이터 없음");
 			return;
@@ -22,8 +22,8 @@ public class MemberInfoPrinter {
 		System.out.println();
 	}
 	
-	public void setMemberManager(MemberManager memberManager) {
-		this.memberManager = memberManager;
+	public void setMemberDao(MemberDao MemberDao) {
+		this.MemberDao = MemberDao;
 	}
 	
 	@Autowired

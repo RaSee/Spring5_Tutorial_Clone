@@ -9,24 +9,24 @@ import org.springframework.stereotype.Component;
 public class MemberRegisterService {
 
 	@Autowired
-	private MemberManager memberManager;
+	private MemberDao MemberDao;
 	
 	public MemberRegisterService() {
 	}
 	
-	public MemberRegisterService(MemberManager memberManager) {
-		this.memberManager = memberManager;
+	public MemberRegisterService(MemberDao MemberDao) {
+		this.MemberDao = MemberDao;
 	}
 	
 	public Long regist(RegisterRequest req) {
-		Member member = memberManager.SelectByEmail(req.getEmail());
+		Member member = MemberDao.SelectByEmail(req.getEmail());
 		if (member != null) {
 			throw new DuplicateMemberException("Duplicated email : " + req.getEmail());
 		}
 		Member newMember = new Member(
 						req.getEmail(), req.getPassword(), req.getName(),
 						LocalDateTime.now());
-		memberManager.insert(newMember);
+		MemberDao.insert(newMember);
 		return newMember.getID();
 	}
 	

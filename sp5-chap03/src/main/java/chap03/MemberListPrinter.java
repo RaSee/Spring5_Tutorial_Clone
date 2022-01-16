@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class MemberListPrinter {
 
 		@Autowired
-		private MemberManager memberManager;
+		private MemberDao MemberDao;
 		@Autowired
 		@Qualifier("printer")
 		private MemberPrinter printer;
@@ -18,13 +18,13 @@ public class MemberListPrinter {
 		public MemberListPrinter() {
 		}
 		
-		public MemberListPrinter(MemberManager memberManager, MemberPrinter printer) {
-			this.memberManager = memberManager;
+		public MemberListPrinter(MemberDao MemberDao, MemberPrinter printer) {
+			this.MemberDao = MemberDao;
 			this.printer = printer;
 		}
 		
 		public void printAll() {
-			Collection<Member> members = memberManager.selectAll();
+			Collection<Member> members = MemberDao.selectAll();
 			members.forEach(m -> printer.print(m));
 		}
 }

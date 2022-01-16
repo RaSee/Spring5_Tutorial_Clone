@@ -7,19 +7,19 @@ import org.springframework.stereotype.Component;
 public class ChangePasswordService {
 
 	@Autowired
-	private MemberManager memberManager;
+	private MemberDao MemberDao;
 	
 	public void changePassword(String email, String oldPwd, String newPwd) 
 			throws MemberNotFoundException, WrongIdPasswordException {
-		Member member = memberManager.SelectByEmail(email);
+		Member member = MemberDao.SelectByEmail(email);
 		if (member == null) {
 			throw new MemberNotFoundException();
 		}
 		member.changePassword(oldPwd, newPwd);
-		memberManager.update(member);
+		MemberDao.update(member);
 	}
 	
-	public void setMemberManager(MemberManager memberManager) {
-		this.memberManager = memberManager;
+	public void setMemberDao(MemberDao MemberDao) {
+		this.MemberDao = MemberDao;
 	}
 }

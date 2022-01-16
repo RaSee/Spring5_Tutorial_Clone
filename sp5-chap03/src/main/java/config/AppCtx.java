@@ -6,7 +6,7 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import chap03.MemberManager;
+import chap03.MemberDao;
 
 @Configuration
 public class AppCtx {
@@ -28,7 +28,7 @@ public class AppCtx {
 	}
 	
 	@Bean
-	public MemberManager memberManager() {
-		return new MemberManager(dataSource());
+	public MemberDao MemberDao() {
+		return new MemberDao(dataSource());
 	}
 }

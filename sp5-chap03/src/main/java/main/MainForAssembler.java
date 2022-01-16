@@ -132,15 +132,15 @@ public class MainForAssembler {
 /*
  * WARNING: Exception encountered during context initialization 
  * - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: 
- * Error creating bean with name 'complexBean': Unsatisfied dependency expressed through field 'memberManager'; 
+ * Error creating bean with name 'complexBean': Unsatisfied dependency expressed through field 'MemberDao'; 
  * nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: 
- * No qualifying bean of type 'chap03.MemberManager' 
+ * No qualifying bean of type 'chap03.MemberDao' 
  * available: expected at least 1 bean which qualifies as autowire candidate.
  * Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 Exception in thread "main" org.springframework.beans.factory.UnsatisfiedDependencyException: 
-Error creating bean with name 'complexBean': Unsatisfied dependency expressed through field 'memberManager'; 
+Error creating bean with name 'complexBean': Unsatisfied dependency expressed through field 'MemberDao'; 
 nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: 
-No qualifying bean of type 'chap03.MemberManager' available: expected at least 1 bean which qualifies as autowire candidate. 
+No qualifying bean of type 'chap03.MemberDao' available: expected at least 1 bean which qualifies as autowire candidate. 
 Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 
  */

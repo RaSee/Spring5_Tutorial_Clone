@@ -1,24 +1,24 @@
 package assembler;
 
 import chap03.ChangePasswordService;
-import chap03.MemberManager;
+import chap03.MemberDao;
 import chap03.MemberRegisterService;
 
 public class Assembler {
 
-	private MemberManager memberManager;
+	private MemberDao MemberDao;
 	private MemberRegisterService regSvc;
 	private ChangePasswordService pwdSvc;
 	
 	public Assembler() {
-		memberManager = new MemberManager(null);
-		regSvc = new MemberRegisterService(memberManager);
+		MemberDao = new MemberDao(null);
+		regSvc = new MemberRegisterService(MemberDao);
 		pwdSvc = new ChangePasswordService();
-		pwdSvc.setMemberManager(memberManager);
+		pwdSvc.setMemberDao(MemberDao);
 	}
 	
-	public MemberManager getMemberManager() {
-		return memberManager;
+	public MemberDao getMemberDao() {
+		return MemberDao;
 	}
 	public MemberRegisterService getMemberRegisterService() {
 		return regSvc;
