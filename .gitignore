@@ -1,6 +1,7 @@
 
 #!.gitignore
 
+*.sql
 *.gradle*
 *.settings*
 *bin*
