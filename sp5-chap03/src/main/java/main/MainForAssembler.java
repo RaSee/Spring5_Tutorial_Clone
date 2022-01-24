@@ -17,7 +17,7 @@ import chap03.MemberInfoPrinter;
 import chap03.MemberNotFoundException;
 import chap03.WrongIdPasswordException;
 import config.ComplexBean;
-import config.AppCtx;
+import config.MemberConfig;
 import config.BasicBean;
 
 public class MainForAssembler {
@@ -26,7 +26,7 @@ public class MainForAssembler {
 
 	public static void main(String[] args) throws IOException {
 		
-		ctx = new AnnotationConfigApplicationContext(BasicBean.class, ComplexBean.class, AppCtx.class);
+		ctx = new AnnotationConfigApplicationContext(BasicBean.class, ComplexBean.class, MemberConfig.class);
 		
 		BufferedReader reader =
 			new BufferedReader(new InputStreamReader(System.in));

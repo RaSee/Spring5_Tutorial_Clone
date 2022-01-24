@@ -5,14 +5,14 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import chap03.ChangePasswordService;
 import chap03.MemberNotFoundException;
 import chap03.WrongIdPasswordException;
-import config.AppCtx;
+import config.MemberConfig;
 import config.BasicBean;
 import config.ComplexBean;
 
 public class MainForCPS {
 
 	public static void main(String[] args) {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppCtx.class, BasicBean.class, ComplexBean.class);
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MemberConfig.class, BasicBean.class, ComplexBean.class);
 	
 		ChangePasswordService cps = ctx.getBean(ChangePasswordService.class);
 		try {

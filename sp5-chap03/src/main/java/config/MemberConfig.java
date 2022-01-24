@@ -13,7 +13,7 @@ import chap03.MemberDao;
 
 @Configuration
 @EnableTransactionManagement
-public class AppCtx {
+public class MemberConfig {
 
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
